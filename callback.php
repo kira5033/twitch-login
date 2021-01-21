@@ -19,17 +19,17 @@ class Callback_Controller {
 
     function main(){
 
-        $Line = new Twitch_Login(CLIENT_ID,CLIENT_SECRET);
+        $TwitchProvider = new Twitch_Login(CLIENT_ID,CLIENT_SECRET);
 
         $state = (isset($_SESSION['state']) && $_SESSION['state'] != '') ? $_SESSION['state'] : '';
 
-        $result = $Line->catchResponse()->Authorization(CALLBACK_URL, $state);
+        $result = $TwitchProvider->catchResponse()->Authorization(CALLBACK_URL, $state);
 
         if($result){
 
-            $_SESSION['id_token'] = $Line->getUserIdToken();
-            $_SESSION['access_token'] = $Line->getUserAccessToken();
-            $_SESSION['user_id'] = $Line->getUserId();
+            $_SESSION['id_token'] = $TwitchProvider->getUserIdToken();
+            $_SESSION['access_token'] = $TwitchProvider->getUserAccessToken();
+            $_SESSION['user_id'] = $TwitchProvider->getUserId();
 
         }
 
